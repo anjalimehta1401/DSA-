@@ -12,7 +12,7 @@ class Meeting {
 public class MaxMeetings {
 
     static void maxMeetings(int[] start, int[] end) {
-        int n = start.length;   
+        int n = start.length;   // ✅ initialized inside
 
         List<Meeting> meet = new ArrayList<>();
         for (int i = 0; i < n; i++) {
@@ -39,6 +39,9 @@ public class MaxMeetings {
         for (int pos : answer) {
             System.out.print(pos + " ");
         }
+
+        // ✅ print max meetings
+        System.out.println("\nMax meetings = " + answer.size());
     }
 
     public static void main(String[] args) {
