@@ -1,0 +1,73 @@
+
+import java.util.*;
+
+public class Main {
+
+    // BFS Traversal
+    public static ArrayList<Integer> bfs(
+            int V, ArrayList<ArrayList<Integer>> adj) {
+
+        ArrayList<Integer> result = new ArrayList<>();
+
+        boolean[] visited = new boolean[V];
+
+        Queue<Integer> queue = new LinkedList<>();
+
+        // Start from node 0
+        visited[0] = true;
+        queue.add(0);
+
+        while (!queue.isEmpty()) {
+
+            int node = queue.poll();
+
+            result.add(node);
+
+            // Traverse all neighbours
+            for (int neighbour : adj.get(node)) {
+
+                if (!visited[neighbour]) {
+
+                    visited[neighbour] = true;
+                    queue.add(neighbour);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+
+        int V = 6;
+
+        // Create adjacency list
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+
+        for (int i = 0; i < V; i++) {
+            adj.add(new ArrayList<>());
+        }
+
+        // Add undirected edges
+        adj.get(0).add(1);
+        adj.get(1).add(0);
+
+        adj.get(0).add(2);
+        adj.get(2).add(0);
+
+        adj.get(1).add(3);
+        adj.get(3).add(1);
+
+        adj.get(1).add(4);
+        adj.get(4).add(1);
+
+        adj.get(2).add(5);
+        adj.get(5).add(2);
+
+        // Call BFS
+        ArrayList<Integer> ans = bfs(V, adj);
+
+        // Print BFS traversal
+        System.out.println(ans);
+    }
+}
